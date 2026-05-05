@@ -1,6 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
+// Use Railway's PORT environment variable if available
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 var app = builder.Build();
 app.UseStaticFiles();
 app.UseRouting();
